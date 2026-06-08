@@ -1,0 +1,3 @@
+#!/bin/bash
+# MOCK_SDK_VERSION: controls the returned Android SDK version (default 24)
+echo "${MOCK_SDK_VERSION:-24}"

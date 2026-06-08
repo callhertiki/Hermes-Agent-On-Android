@@ -1,0 +1,4 @@
+#!/bin/bash
+# MOCK_PKG_EXIT: set to non-zero to simulate pkg failure
+echo "[mock] pkg $*" >&2
+exit "${MOCK_PKG_EXIT:-0}"

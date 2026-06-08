@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "[mock] apt-get $*" >&2
+exit 0

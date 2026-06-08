@@ -1,0 +1,29 @@
+#!/bin/bash
+# MOCK_UBUNTU_INSTALLED: set to "true" to report ubuntu as already installed
+# MOCK_PROOT_INSTALL_EXIT: set to non-zero to simulate an install failure
+case "$1" in
+    list)
+        # Status is on the same line as the distro name — matches the format
+        # the detection grep pipeline in nous_hermes_agent_install.sh expects.
+        if [ "${MOCK_UBUNTU_INSTALLED:-false}" = "true" ]; then
+            printf "* ubuntu (Ubuntu)  Installed: yes\n"
+        else
+            printf "* ubuntu (Ubuntu)  Installed: no\n"
+        fi
+        ;;
+    install)
+        echo "[mock] proot-distro install $2" >&2
+        exit "${MOCK_PROOT_INSTALL_EXIT:-0}"
+        ;;
+    login)
+        # proot-distro login <distro> -- <cmd> [args...]
+        shift 2  # drop 'login' and the distro name
+        if [ "${1:-}" = "--" ]; then
+            shift
+            exec "$@"
+        fi
+        ;;
+    *)
+        echo "[mock] proot-distro $*" >&2
+        ;;
+esac
