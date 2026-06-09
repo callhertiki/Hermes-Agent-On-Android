@@ -1,0 +1,29 @@
+# Noeau Guardian — Python Requirements
+#
+# GOOD NEWS: Noeau Guardian uses ONLY Python's standard library.
+# You do NOT need to install any external packages.
+# Just make sure you have Python 3.8 or newer installed.
+#
+# Standard library modules used (all built into Python):
+#   - sys, os              — system and OS operations
+#   - pathlib              — cross-platform file paths
+#   - json                 — reading and writing config/log files
+#   - hashlib              — SHA-256 hashing for duplicate file detection
+#   - secrets              — cryptographically secure random (for passwords)
+#   - shutil               — moving files to quarantine
+#   - datetime             — timestamps for reports and logs
+#   - platform             — detecting OS for reports
+#   - string               — character sets for password generation
+#   - typing               — type hints (Optional, etc.)
+#
+# CHECK YOUR PYTHON VERSION:
+#   Windows:  python --version
+#   Linux:    python3 --version
+#
+# INSTALL PYTHON (if needed):
+#   Windows:  https://python.org/downloads — tick "Add Python to PATH"
+#   Kali:     sudo apt update && sudo apt install python3
+#
+# HOW TO RUN:
+#   Windows:  python main.py
+#   Linux:    python3 main.py

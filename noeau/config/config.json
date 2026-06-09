@@ -1,0 +1,47 @@
+{
+  "_comment": "Noeau Guardian configuration. Edit paths to match your system.",
+
+  "backup_paths": [
+    "~/Documents",
+    "~/Desktop",
+    "~/Pictures",
+    "~/noeau"
+  ],
+
+  "scan_defaults": {
+    "huge_file_mb": 100,
+    "stale_backup_days": 7,
+    "suspicious_extensions": [
+      ".exe", ".bat", ".cmd", ".ps1", ".vbs",
+      ".wsf", ".scr", ".pif", ".hta", ".jar"
+    ],
+    "skip_folders": [
+      "C:/Windows",
+      "C:/Program Files",
+      "C:/Program Files (x86)",
+      "/usr",
+      "/bin",
+      "/sbin",
+      "/lib"
+    ]
+  },
+
+  "decoys": {
+    "base_folder": "~/Documents",
+    "folders": [
+      "Passwords_OLD",
+      "Passwords_DO_NOT_USE",
+      "Archive_Login_Backup"
+    ]
+  },
+
+  "report": {
+    "save_folder": "reports",
+    "keep_last_n": 30
+  },
+
+  "quarantine": {
+    "folder": "quarantine",
+    "ask_before_moving": true
+  }
+}
