@@ -1,0 +1,63 @@
+{
+  "$schema": "noeau-config/v1",
+  "user": {
+    "name": "Your Name",
+    "timezone": "Pacific/Honolulu",
+    "obsidian_vault": "C:\\Noeau\\knowledge"
+  },
+  "topics": [
+    "python",
+    "linux",
+    "networking",
+    "cybersecurity",
+    "osint",
+    "research",
+    "personal-development",
+    "lds-studies"
+  ],
+  "topic_aliases": {
+    "py":    "python",
+    "net":   "networking",
+    "cyber": "cybersecurity",
+    "sec":   "cybersecurity",
+    "pd":    "personal-development",
+    "lds":   "lds-studies",
+    "dev":   "personal-development"
+  },
+  "goals": {
+    "daily_learning_minutes": 60,
+    "weekly_notes_target": 10,
+    "monthly_pdf_target": 4
+  },
+  "reporting": {
+    "auto_daily_report": true,
+    "auto_weekly_report": true,
+    "daily_report_hour": 21,
+    "week_start_day": "Monday"
+  },
+  "inbox_watch": {
+    "enabled": true,
+    "auto_categorize": true,
+    "process_pdfs": true
+  },
+  "dashboard": {
+    "show_streak": true,
+    "show_goals": true,
+    "show_recent_count": 5
+  },
+  "memory": {
+    "auto_build_on_capture": false,
+    "min_word_frequency": 3
+  },
+  "privacy": {
+    "exclude_patterns": [
+      "*.private.*",
+      "*secret*",
+      "*password*",
+      "*credentials*"
+    ],
+    "safe_mode": true,
+    "no_network_scan": true,
+    "no_email_access": true
+  }
+}
