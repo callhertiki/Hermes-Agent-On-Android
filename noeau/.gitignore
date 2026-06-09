@@ -1,0 +1,18 @@
+# Python cache — generated automatically, do not commit
+__pycache__/
+*.pyc
+*.pyo
+
+# Memory files — contain your personal baseline and alerts
+# Uncomment the lines below if you do NOT want these tracked in git:
+# memory/honeytoken_baseline.json
+# memory/honeytoken_alerts.json
+# memory/auth.json
+
+# Reports — generated locally, usually no need to version control
+# Uncomment if you want to keep reports out of git:
+# reports/
+
+# Quarantine — personal files moved here should not be in version control
+quarantine/*
+!quarantine/README.md
