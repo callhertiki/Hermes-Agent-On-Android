@@ -12,6 +12,7 @@ SAFETY RULES:
 - Real passwords must go into KeePassXC — never plain text files.
 """
 
+import os
 import secrets
 import string
 
@@ -171,6 +172,15 @@ def estimate_strength(password: str) -> str:
         return "Very Strong"
 
 
+def _clear_screen():
+    """
+    Clear the terminal screen to remove the generated password from view.
+    Uses 'cls' on Windows and 'clear' on Linux/Mac.
+    This is a security measure — not just cosmetic.
+    """
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 def run_interactive():
     """
     Interactive menu for password and passphrase generation.
@@ -254,7 +264,9 @@ def _interactive_password():
 
     # Give them a moment to copy it before the screen moves on
     input("  Press Enter when you have copied the password... ")
-    print("  [*] Password cleared from view. Good practice.")
+    _clear_screen()
+    print("  [*] Password cleared from screen. Good practice.")
+    print("  [!] Reminder: Store it in KeePassXC only.")
 
 
 def _interactive_passphrase():
@@ -286,4 +298,6 @@ def _interactive_passphrase():
     print()
 
     input("  Press Enter when you have copied the passphrase... ")
-    print("  [*] Passphrase cleared from view.")
+    _clear_screen()
+    print("  [*] Passphrase cleared from screen. Good practice.")
+    print("  [!] Reminder: Store it in KeePassXC only.")
