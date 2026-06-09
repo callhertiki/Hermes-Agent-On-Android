@@ -1,85 +1,88 @@
 # Noʻeau Automation Dashboard
 
-> *Noʻeau* — wisdom, wit, clever skill. This system turns your Obsidian vault into an AI accountability team.
+> Phase 1 — All agents run manually. You run the script, you copy the prompt, you paste the output.
+> Previous version backed up to: `Archive/AUTOMATION_DASHBOARD-backup-2025-06-09.md`
 
 ---
 
-## System Status
+## The 8 Automation Agents
 
-| Agent | Purpose | Prompt | Log | Output |
-|-------|---------|--------|-----|--------|
-| [[Active/accountability-check\|Accountability Check]] | Compares plan vs. reality every 30 min | [[Prompts/accountability-check.prompt\|Prompt]] | [[Logs/accountability-check.log\|Log]] | [[Outputs/accountability-check.output\|Output]] |
-| [[Active/learning-coach\|Learning Coach]] | Quizzes you on what you're studying | [[Prompts/learning-coach.prompt\|Prompt]] | [[Logs/learning-coach.log\|Log]] | [[Outputs/learning-coach.output\|Output]] |
-| [[Active/reflection-agent\|Reflection Agent]] | End-of-day review and tomorrow's plan | [[Prompts/reflection-agent.prompt\|Prompt]] | [[Logs/reflection-agent.log\|Log]] | [[Outputs/reflection-agent.output\|Output]] |
-| [[Active/scribe-agent\|Scribe Agent]] | Converts rough notes to clean outputs | [[Prompts/scribe-agent.prompt\|Prompt]] | [[Logs/scribe-agent.log\|Log]] | [[Outputs/scribe-agent.output\|Output]] |
-
----
-
-## How to Run an Agent (Manual)
-
-1. Open **PowerShell** (or terminal)
-2. Navigate to this vault's Scripts folder
-3. Run: `pwsh Scripts/run-noeau-agent.ps1`
-4. Choose an agent from the menu
-5. Copy the generated prompt
-6. Paste into your AI chat (Claude, ChatGPT, etc.)
-7. Paste the AI response back into the Output file
-
-> Automation scheduling comes later. Right now everything is manual and safe.
+| # | Agent | Purpose | Cadence | Prompt | Log | Output |
+|---|-------|---------|---------|--------|-----|--------|
+| 1 | [[Active/accountability-check\|Accountability Check]] | Plan vs. reality — one verdict | Every 30 min | [[Prompts/accountability-check-prompt\|Prompt]] | [[Logs/accountability-check-log\|Log]] | [[Outputs/accountability-check-output\|Output]] |
+| 2 | [[Active/executive-coach\|Executive Coach]] | Goals → top priority → next actions | Every 3 hours | [[Prompts/executive-coach-prompt\|Prompt]] | [[Logs/executive-coach-log\|Log]] | [[Outputs/executive-coach-output\|Output]] |
+| 3 | [[Active/learning-coach\|Learning Coach]] | Quiz me — check real understanding | After study | [[Prompts/learning-coach-prompt\|Prompt]] | [[Logs/learning-coach-log\|Log]] | [[Outputs/learning-coach-output\|Output]] |
+| 4 | [[Active/reflection-agent\|Reflection Agent]] | End-of-day review + tomorrow's move | Evening | [[Prompts/reflection-agent-prompt\|Prompt]] | [[Logs/reflection-agent-log\|Log]] | [[Outputs/reflection-agent-output\|Output]] |
+| 5 | [[Active/source-monitor\|Source Monitor]] | Research queue + summaries + Discord notes | Every 8 hours | [[Prompts/source-monitor-prompt\|Prompt]] | [[Logs/source-monitor-log\|Log]] | [[Outputs/source-monitor-output\|Output]] |
+| 6 | [[Active/task-renewer\|Task Renewer]] | Review stale tasks, carry forward or archive | Every 2 days | [[Prompts/task-renewer-prompt\|Prompt]] | [[Logs/task-renewer-log\|Log]] | [[Outputs/task-renewer-output\|Output]] |
+| 7 | [[Active/guardian-check\|Guardian Check]] | Backup + security + vault health | Daily | [[Prompts/guardian-check-prompt\|Prompt]] | [[Logs/guardian-check-log\|Log]] | [[Outputs/guardian-check-output\|Output]] |
+| 8 | [[Active/scribe-cleanup\|Scribe Cleanup]] | Format rough notes → clean Obsidian + Discord | Daily | [[Prompts/scribe-cleanup-prompt\|Prompt]] | [[Logs/scribe-cleanup-log\|Log]] | [[Outputs/scribe-cleanup-output\|Output]] |
 
 ---
 
-## Folder Map
+## Daily Agent Schedule (Manual — Phase 1)
 
+| Time | Agent | What You Need |
+|------|-------|--------------|
+| Morning start | Guardian Check | Backup status, security status |
+| Morning start | Executive Coach | Goals list, what's been done |
+| Every 30 min | Accountability Check | Today's plan + honest "what am I doing?" |
+| Every 3 hours | Executive Coach | Goals + completed items |
+| After study | Learning Coach | Study notes + 5 honest answers |
+| When inbox is full | Scribe Cleanup | Raw notes from inbox |
+| Every 8 hours | Source Monitor | Reading queue + any completed sources |
+| Every 2 days | Task Renewer | Incomplete tasks from recent daily notes |
+| Evening | Reflection Agent | Full daily note + honest summary |
+
+---
+
+## Runner Script
+
+→ [[Scripts/run-noeau-agent\|run-noeau-agent.ps1]]
+
+```powershell
+# Open PowerShell and run:
+cd "C:\Path\To\Your\Vault"
+.\07-Automations\Scripts\run-noeau-agent.ps1
 ```
-07-Automations/
-├── AUTOMATION_DASHBOARD.md      ← You are here
-├── Active/                      ← Agent profile cards
-│   ├── accountability-check.md
-│   ├── learning-coach.md
-│   ├── reflection-agent.md
-│   └── scribe-agent.md
-├── Prompts/                     ← Actual AI prompt text
-│   ├── accountability-check.prompt.md
-│   ├── learning-coach.prompt.md
-│   ├── reflection-agent.prompt.md
-│   └── scribe-agent.prompt.md
-├── Logs/                        ← When each agent was run (append-only)
-│   ├── accountability-check.log.md
-│   ├── learning-coach.log.md
-│   ├── reflection-agent.log.md
-│   └── scribe-agent.log.md
-├── Outputs/                     ← AI responses saved here
-│   ├── accountability-check.output.md
-│   ├── learning-coach.output.md
-│   ├── reflection-agent.output.md
-│   └── scribe-agent.output.md
-└── Scripts/
-    └── run-noeau-agent.ps1      ← Manual runner (PowerShell)
-```
+
+---
+
+## AI Team Activation Prompts (Identity-Based)
+
+For setting up full agent personas — use these at the start of a new chat:
+
+| Agent | Prompt |
+|-------|--------|
+| Kumu | [[Prompts/kumu-activation\|kumu-activation]] |
+| Kiaʻi | [[Prompts/kiai-activation\|kiai-activation]] |
+| Mea Kākau | [[Prompts/mea-kakau-activation\|mea-kakau-activation]] |
+| Alakaʻi | [[Prompts/alakai-activation\|alakai-activation]] |
+| Mea Huli | [[Prompts/mea-huli-activation\|mea-huli-activation]] |
+| Builder | [[Prompts/builder-activation\|builder-activation]] |
+
+---
+
+## Archive
+
+→ [[Archive/Index|Archive folder]] — old prompts, backups, superseded scripts
 
 ---
 
 ## Safety Rules (Non-Negotiable)
 
-1. **No files are ever deleted by these agents**
-2. **No files are overwritten — outputs are appended with timestamps**
-3. **No scheduling is active yet — everything is manual**
-4. **Cybersecurity topics stay ethical and defensive only**
-5. **All prompts are visible before being sent — you review, you send**
+1. No files are ever deleted by these agents
+2. Outputs are appended with timestamps — never overwritten
+3. No scheduling is active yet — everything is manual
+4. Cybersecurity content is defensive and educational only
+5. All prompts are reviewed by you before being sent to any AI
 
 ---
 
-## What to Build Next
+## Phase Roadmap
 
-After validating each agent works manually:
-
-- [ ] Schedule `accountability-check` to trigger every 30 min via Task Scheduler or cron
-- [ ] Build a Templater/QuickAdd hook to auto-open prompts from Obsidian
-- [ ] Connect to Claude API for fully automated runs
-- [ ] Add a nightly Git auto-commit to back up vault state
-- [ ] Build a weekly summary that reads all logs and generates a report
-
----
-
-*Part of the [[../Noeau-OS/_Dashboard|Noʻeau OS]] system.*
+- [x] Phase 1 — Manual runner + 8 agents + all prompts/logs/outputs
+- [ ] Phase 2 — Windows Task Scheduler for timed agents
+- [ ] Phase 3 — Claude API integration — auto-send and receive
+- [ ] Phase 4 — WSL/Linux integration
+- [ ] Phase 5 — Full background operation
