@@ -36,6 +36,7 @@ sys.path.insert(0, str(NOEAU_ROOT))
 # Now we can import from skills/ and config/ as if they were in the same folder.
 from config.config import load_config
 from skills import password_generator, file_scanner, honeytoken, backup_checker, report_generator
+from skills.auth import verify_on_startup
 
 
 # ── CONSTANTS ────────────────────────────────────────────────────────────────
@@ -51,6 +52,11 @@ def main():
 
     # First thing: make sure all required folders exist
     _ensure_folders_exist()
+
+    # PIN check — must pass before anything else is shown
+    # On first run this creates the PIN. After that it verifies it.
+    if not verify_on_startup():
+        sys.exit(1)
 
     # Load configuration from config/config.json
     config = load_config()
@@ -168,6 +174,8 @@ def _settings_menu(config: dict):
     print("  [3] Change large file threshold (MB)")
     print("  [4] Change stale backup threshold (days)")
     print("  [5] View config file location")
+    print("  [6] Change Noeau PIN")
+    print("  [7] Remove Noeau PIN")
     print("  [B] Back")
     print()
 
@@ -212,6 +220,14 @@ def _settings_menu(config: dict):
         config_path = NOEAU_ROOT / "config" / "config.json"
         print(f"\n  Config file: {config_path}")
         print("  You can edit this file directly in any text editor.")
+
+    elif choice == "6":
+        from skills.auth import change_pin
+        change_pin()
+
+    elif choice == "7":
+        from skills.auth import remove_pin
+        remove_pin()
 
 
 def _ensure_folders_exist():
