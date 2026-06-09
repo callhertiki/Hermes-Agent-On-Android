@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "user": {
+    "name": "Cipher",
+    "system": "Kali WSL",
+    "noeau_root": "/home/Cipher/Noeau"
+  },
+  "topics": [
+    "python",
+    "linux",
+    "networking",
+    "cybersecurity",
+    "osint",
+    "research",
+    "personal-development",
+    "lds-studies"
+  ],
+  "topic_aliases": {
+    "py":    "python",
+    "net":   "networking",
+    "cyber": "cybersecurity",
+    "sec":   "cybersecurity",
+    "pd":    "personal-development",
+    "lds":   "lds-studies"
+  },
+  "goals": {
+    "daily_learning_minutes": 60,
+    "weekly_notes_target": 10,
+    "monthly_pdf_target": 4
+  },
+  "search": {
+    "extensions": [".md", ".txt", ".py"],
+    "exclude_dirs": [".git", "__pycache__", ".obsidian"]
+  },
+  "reports": {
+    "auto_daily": true,
+    "daily_hour": 21
+  },
+  "pdf": {
+    "extract_text": true,
+    "placeholder_when_no_backend": true
+  },
+  "privacy": {
+    "scan_root_only": "/home/Cipher/Noeau",
+    "safe_mode": true,
+    "no_network": true,
+    "no_email": true,
+    "no_browser_data": true,
+    "no_system_files": true
+  }
+}
