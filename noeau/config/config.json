@@ -2,11 +2,10 @@
   "_comment": "Noeau Guardian configuration. Edit paths to match your system.",
 
   "backup_paths": [
-    "~/Documents",
-    "~/Desktop",
-    "~/Pictures",
-    "~/noeau"
+    "~/Documents"
   ],
+
+  "auto_update": true,
 
   "scan_defaults": {
     "huge_file_mb": 100,

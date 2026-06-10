@@ -81,13 +81,26 @@ def resolve_path(path_str: str) -> Path:
 def _default_config() -> dict:
     """
     Return a safe default configuration if config.json is missing or broken.
-    This ensures the program always has something to work with.
+    Only includes backup paths that actually exist on this machine.
     """
+    # Check which standard folders exist before adding them as defaults
+    home = Path.home()
+    candidate_paths = [
+        home / "Documents",
+        home / "OneDrive" / "Documents",   # Windows OneDrive redirect
+        home / "OneDrive" / "Desktop",
+        home / "Desktop",
+        home / "Pictures",
+        home / "OneDrive" / "Pictures",
+    ]
+    backup_paths = [str(p) for p in candidate_paths if p.exists()]
+
+    # Fall back to just home directory if nothing found
+    if not backup_paths:
+        backup_paths = [str(home)]
+
     return {
-        "backup_paths": [
-            "~/Documents",
-            "~/Desktop"
-        ],
+        "backup_paths": backup_paths,
         "scan_defaults": {
             "huge_file_mb": 100,
             "stale_backup_days": 7,

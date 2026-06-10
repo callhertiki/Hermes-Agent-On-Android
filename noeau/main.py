@@ -37,10 +37,11 @@ sys.path.insert(0, str(NOEAU_ROOT))
 from config.config import load_config
 from skills import password_generator, file_scanner, honeytoken, backup_checker, report_generator
 from skills.auth import verify_on_startup
+from skills.updater import check_for_updates
 
 
 # ── CONSTANTS ────────────────────────────────────────────────────────────────
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 NAME = "Noeau Guardian"
 
 
@@ -52,6 +53,12 @@ def main():
 
     # First thing: make sure all required folders exist
     _ensure_folders_exist()
+
+    # Auto-update — pull latest code before anything else
+    # If an update is found, Noeau restarts herself automatically
+    config = load_config()
+    if config.get("auto_update", True):
+        check_for_updates(NOEAU_ROOT)
 
     # PIN check — must pass before anything else is shown
     # On first run this creates the PIN. After that it verifies it.
@@ -168,6 +175,10 @@ def _settings_menu(config: dict):
     print(f"\n  Decoy base folder: {decoy.get('base_folder', '~/Documents')}")
     print(f"  Decoy folders: {', '.join(decoy.get('folders', []))}")
 
+    # Show auto-update status
+    auto_update = config.get("auto_update", True)
+    print(f"\n  Auto-update on launch: {'ON' if auto_update else 'OFF'}")
+
     print()
     print("  [1] Add a backup path")
     print("  [2] Remove a backup path")
@@ -176,6 +187,7 @@ def _settings_menu(config: dict):
     print("  [5] View config file location")
     print("  [6] Change Noeau PIN")
     print("  [7] Remove Noeau PIN")
+    print("  [8] Toggle auto-update on launch")
     print("  [B] Back")
     print()
 
@@ -228,6 +240,13 @@ def _settings_menu(config: dict):
     elif choice == "7":
         from skills.auth import remove_pin
         remove_pin()
+
+    elif choice == "8":
+        current = config.get("auto_update", True)
+        config["auto_update"] = not current
+        save_config(config)
+        state = "ON" if config["auto_update"] else "OFF"
+        print(f"  [+] Auto-update turned {state}.")
 
 
 def _ensure_folders_exist():
