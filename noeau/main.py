@@ -40,7 +40,7 @@ from skills.auth import verify_on_startup
 
 
 # ── CONSTANTS ────────────────────────────────────────────────────────────────
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 NAME = "Noeau Guardian"
 
 
